@@ -25,12 +25,11 @@ class Event:
 	def __init__(self, jsonObject):
 		self.__raw = jsonObject
 		self.__setDate()
-		self.title = self.__raw["acti_title"]
-		if self.__raw["room"] != None:
-			self.room = self.__raw["room"]['code'] if 'room' in self.__raw  and 'code' in self.__raw['room'] else None
-		else:
-			self.room = None
-		
+		self.title = self.__raw["acti_title"] if 'acti_title' in self.__raw else None
+		self.room = None
+		if 'room' in self.__raw:
+			if self.__raw["room"] != None:
+				self.room = self.__raw["room"]['code'] if'code' in self.__raw['room'] else None
 	
 	def getUrl(self) -> str:
 		year = self.__raw['scolaryear']

@@ -1,0 +1,18 @@
+#!/usr/bin/env python3
+
+from sources.Args import parseArgs
+from sources.SyncCalendars import syncCalendars
+import sys
+
+
+def main():
+	try:
+		args = parseArgs(sys.argv[1:])
+		syncCalendars(gladir=args.gladir, redump=args.redump)
+		return 0
+	except Exception as e:
+		print(e)
+		return 1
+
+if __name__ == "__main__":
+	exit(main())

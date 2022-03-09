@@ -2,3 +2,6 @@ credentials.json
 token*.pickle
 **/__pycache__
 gladitek.json
+build
+dist
+gladitek.egg-info
