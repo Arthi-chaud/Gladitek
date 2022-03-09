@@ -1,7 +1,7 @@
 import json
 import requests
 import urllib.parse
-from datetime import datetime
+from datetime import date, timedelta, datetime
 
 class Intra:
 	URL = 'https://intra.epitech.eu'
@@ -17,7 +17,7 @@ class Intra:
 		response = self.call('/user')
 		return response.json()['login']
 	
-	def getAllEvents(self, since=datetime.now()):
+	def getAllEvents(self, since=date.today()):
 		response = self.call('/planning/load', queryParams= {'start': since.strftime("%Y-%m-%d")})
 		return [Event(event) for event in response.json()]
 
