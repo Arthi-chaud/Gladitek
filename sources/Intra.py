@@ -22,20 +22,22 @@ class Intra:
 		return [Event(event) for event in response.json()]
 
 class Event:
+	def __access(self, obj, field):
+		return obj[field] if field in obj else None
 	def __init__(self, jsonObject):
 		self.__raw = jsonObject
 		self.__setDate()
-		self.title = self.__raw["acti_title"] if 'acti_title' in self.__raw else None
+		self.title = self.__access(self.__raw, 'acti_title')
 		self.room = None
 		if 'room' in self.__raw:
 			if self.__raw["room"] != None:
-				self.room = self.__raw["room"]['code'] if'code' in self.__raw['room'] else None
+				self.room = self.__access(self.__raw['room'], 'code')
 	
 	def getUrl(self) -> str:
-		year = self.__raw['scolaryear']
-		module = self.__raw['codemodule']
-		instance = self.__raw['codeinstance']
-		activity = self.__raw['codeacti']
+		year = self.__access(self.__raw, 'scolaryear')
+		module = self.__access(self.__raw, 'codemodule')
+		instance = self.__access(self.__raw, 'codeinstance')
+		activity = self.__access(self.__raw, 'codeacti')
 		return f"{Intra.URL}/module/{year}/{module}/{instance}/{activity}"
 
 	def __setDate(self) -> None:

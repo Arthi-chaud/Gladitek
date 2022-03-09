@@ -2,9 +2,9 @@
 
 The best tool to not forget about your Epitech's events!
 
-Using Intranet's API, it syncs every single event your have registered to (or assigned to, hello dear AER and Astek :wave:) to your Google Calendar.
+Using Intranet's API, it syncs every single event your have registered to (or are assigned to, hello dear AER and Astek :wave:) to your Google Calendar.
 
-Are you a student *and* part of the pedagogical team? Well, first, your a boss! You are in the right place, this tool lets you configure multiple calendar using multiple Epitech accounts!
+Are you a student *and* part of the pedagogical team? Well, first, you're a boss! You are in the right place, this tool lets you configure multiple calendar using multiple Epitech accounts!
 
 ## Installation
 
