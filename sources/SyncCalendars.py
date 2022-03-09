@@ -26,7 +26,7 @@ def syncCalendars(gladir: str, redump: bool):
 				calendarAPI.delete_event(event.id)
 			print("Calendar cleared!")
 		intra = Intra(calendar['autologin'])
-		newEvents = intra.getAllEvents(date(2015, 1, 1) if redump else date.today())
+		newEvents = intra.getAllEvents(date(2018, 1, 1) if redump else date.today())
 		calendar = calendarAPI.get_events(time_min=date.today())
 		for event in newEvents:
 			if event.title == None:
