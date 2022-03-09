@@ -27,7 +27,7 @@ class Event:
 		self.__setDate()
 		self.title = self.__raw["acti_title"]
 		if self.__raw["room"] != None:
-			self.room = self.__raw["room"]['code'] if 'room' in self.__raw else None
+			self.room = self.__raw["room"]['code'] if 'room' in self.__raw  and 'code' in self.__raw['room'] else None
 		else:
 			self.room = None
 		
@@ -43,7 +43,7 @@ class Event:
 		slotKeys = ['rdv_group_registered', 'rdv_indiv_registered']
 		gotDate = False
 		for slotKey in slotKeys:
-			if slotKey in self.__raw:
+			if slotKey in self.__raw and self.__raw[slotKey] != None:
 				slot = self.__raw[slotKey].split('|')
 				self.start = self.__datetimeFromStr(slot[0])
 				self.end = self.__datetimeFromStr(slot[1])
@@ -59,4 +59,6 @@ class Event:
 		return self.__raw['event_registered'] != False
 
 	def isAssignedTo(self, intra) -> bool:
-		return any(prof['login'] == intra.email for prof in self.__raw['prof_inst'])
+		if 'prof_inst' in self.__raw and self.__raw['prof_inst'] != None:
+			return any(prof['login'] == intra.email for prof in self.__raw['prof_inst'])
+		return False
