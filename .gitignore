@@ -1,4 +1,4 @@
 credentials.json
 token*.pickle
 **/__pycache__
-setup.json
+gladitek.json
