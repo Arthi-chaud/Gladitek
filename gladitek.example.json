@@ -2,6 +2,7 @@
 	"credentials_path": "./credentials.json",
 	"calendars": [
 		{
+			"pedago" : false,
 			"calendar_id": "XXXXXX@group.calendar.google.com",
 			"autologin": "",
 			"token_path": ""
