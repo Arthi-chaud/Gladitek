@@ -1,17 +1,20 @@
 #!/usr/bin/env python3
 
 from sources.Args import parseArgs
-from sources.SyncCalendars import syncCalendars
+from sources.Gladitek import syncCalendars, clearCalendars
 import sys
 
 
 def main():
 	try:
 		args = parseArgs(sys.argv[1:])
-		syncCalendars(gladir=args.gladir, redump=args.redump)
+		if args.clear:
+			clearCalendars(args.gladir)
+		else:
+			syncCalendars(gladir=args.gladir, fullDump=args.full)
 		return 0
 	except Exception as e:
-		print(e)
+		raise e
 		return 1
 
 if __name__ == "__main__":

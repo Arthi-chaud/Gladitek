@@ -50,7 +50,7 @@ gladitek --gladir $GLADIR
 To sync your calendars with events before and from today:
 
 ```bash
-gladitek --gladir $GLADIR --force
+gladitek --gladir $GLADIR --full
 ```
 
 Note: the first time, you will be ask to authenticate via OAuth2.
