@@ -23,7 +23,7 @@ First of all, you'll need python3, an Epitech Intranet Access, and a Google Acco
 
 We recommend to dedicate one Google Calendar per Intra Calendar
 
-Then, in a folder that well call `$GLADIR`, we'll put some configuration files
+Then, in a folder that we'll call `$GLADIR`, we'll put some configuration files
 
 - A 'credentials.json' file:
 
