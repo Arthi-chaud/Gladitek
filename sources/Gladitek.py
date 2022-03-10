@@ -9,21 +9,25 @@ from beautiful_date import *
 
 todayFormat = datetime.now().strftime("%Y-%m-%d")
 
+# Check if new event is already in calendar using event's code
 def eventIsKnown(calendar: list, newEvent: Event) -> bool:
 	for event in calendar:
 		if newEvent.eventCode in event.description:
 			return True
 	return False
 
+# Open and parse gladitek.json
 def getCalendarsConf(gladir: str):
 	confFilePath = f"{gladir}/gladitek.json"
 	confFileContent = open(confFilePath)
 	content = json.load(confFileContent)
 	return content['calendars'], content['credentials_path']
 
+# Fetch one Google Calendar
 def getCalendarAPI(gladir: str, credentialPath: str, calendarConf):
 	return GoogleCalendar(credentials_path=f"{gladir}/{credentialPath}", token_path=f"{gladir}/{calendarConf['token_path']}", calendar=calendarConf['calendar_id'])
 
+# Clears Google calendars
 def clearCalendars(gladir: str):
 	calendarsConf, credentialPath = getCalendarsConf(gladir)
 	today = date.today()

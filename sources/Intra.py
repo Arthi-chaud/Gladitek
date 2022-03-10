@@ -49,6 +49,7 @@ class Intra:
 		return events
 
 class Event:
+	# Access field fomr JSON Object. If it doesn't exists, returns None
 	def __access(self, obj, field):
 		return obj[field] if field in obj else None
 	def __init__(self, jsonObject):
@@ -62,17 +63,18 @@ class Event:
 			if self.__raw["room"] != None:
 				self.room = self.__access(self.__raw['room'], 'code')
 	
+	# Format description of Event for Google's Event
 	def formatDescription(self):
 		description = f"{self.description}\n" if self.description != None else ""
 		return f"{description}{Intra.URL}{self.getUrl()}\n\nEvent code: {self.eventCode}\n"
-	
+	# Returns the Intra's path to acces the activity's page
 	def getUrl(self) -> str:
 		year = self.__access(self.__raw, 'scolaryear')
 		module = self.__access(self.__raw, 'codemodule')
 		instance = self.__access(self.__raw, 'codeinstance')
 		activity = self.__access(self.__raw, 'codeacti')
 		return f"/module/{year}/{module}/{instance}/{activity}"
-
+	# Set's the event start/end date, manages slots and full events
 	def __setDate(self) -> None:
 		slotKeys = ['rdv_group_registered', 'rdv_indiv_registered']
 		gotDate = False
