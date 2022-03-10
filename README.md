@@ -6,11 +6,16 @@ Using Intranet's API, it syncs every single event your have registered to (or ar
 
 Are you a student *and* part of the pedagogical team? Well, first, you're a boss! You are in the right place, this tool lets you configure multiple calendar using multiple Epitech accounts!
 
+It manages multiple events from the same activity, avoid duplicates and can be used with a daemon like cron, systemd, and launchd
+
 ## Installation
 
 Clone this repository, and at its path to your `PATH` environment variable
 Install the Google Calendar API Module:
-```pip install gcsa dateutil```
+
+```bash
+pip install gcsa dateutil
+```
 
 ## Setup Gladitek
 
@@ -53,9 +58,9 @@ To sync your calendars with events before and from today:
 ```bash
 gladitek --gladir $GLADIR --full
 ```
-**Warning** If you are a pedago, the use of this option should be minimied
-Note: the first time, you will be ask to authenticate via OAuth2.
 
+**Warning**: If you are a pedago, the use of this option should be minimied
+Note: the first time, you will be ask to authenticate via OAuth2.
 
 To clear your calendars:
 
@@ -63,4 +68,4 @@ To clear your calendars:
 gladitek --gladir $GLADIR --clear
 ```
 
-**Warning** This will erase all events in the calendars
+**Warning** This will erase all events in the calendars. It might take some time
