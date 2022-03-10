@@ -9,6 +9,8 @@ Are you a student *and* part of the pedagogical team? Well, first, you're a boss
 ## Installation
 
 Clone this repository, and at its path to your `PATH` environment variable
+Install the Google Calendar API Module:
+```pip install gcsa```
 
 ## Setup Gladitek
 
@@ -39,18 +41,24 @@ Then, in a folder that well call `$GLADIR`, we'll put some configuration files
 
 ## Usage
 
-To sync your calendars:
+To sync your calendars with events starting from today:
 
 ```bash
 gladitek --gladir $GLADIR
 ```
 
-Note: the first time, you will be ask to authenticate via OAuth2.
-
-To re-dump your calendars:
+To sync your calendars with events before and from today:
 
 ```bash
-gladitek --gladir $GLADIR -redump
+gladitek --gladir $GLADIR --force
+```
+
+Note: the first time, you will be ask to authenticate via OAuth2.
+
+To clear your calendars:
+
+```bash
+gladitek --gladir $GLADIR --clear
 ```
 
 **Warning** This will erase all events in the calendars
