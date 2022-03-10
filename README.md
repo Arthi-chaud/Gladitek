@@ -10,7 +10,7 @@ Are you a student *and* part of the pedagogical team? Well, first, you're a boss
 
 Clone this repository, and at its path to your `PATH` environment variable
 Install the Google Calendar API Module:
-```pip install gcsa```
+```pip install gcsa dateutil```
 
 ## Setup Gladitek
 
@@ -38,6 +38,7 @@ Then, in a folder that well call `$GLADIR`, we'll put some configuration files
   - Set the 'calendar_id' key to the Google Calendar's ID (`My Calendars` -> `Settings and sharing` -> `Integrate calendar` -> `Calendar ID`)
   - Set the 'autologin' field with the Intra's autologin link (`Intranet` -> `Administration` -> `Generate autologin` -> What's after `auth-`)
   - Set the 'token_path' field with a name of the token to generate on first launch. It **must** be unique
+  - Set the 'pedago' field with with a boolean: `true` if you are part of the pedagogical team, `false`otherwise
 
 ## Usage
 
@@ -52,8 +53,9 @@ To sync your calendars with events before and from today:
 ```bash
 gladitek --gladir $GLADIR --full
 ```
-
+**Warning** If you are a pedago, the use of this option should be minimied
 Note: the first time, you will be ask to authenticate via OAuth2.
+
 
 To clear your calendars:
 

@@ -38,24 +38,33 @@ def clearCalendars(gladir: str):
 def syncCalendars(gladir: str, fullDump: bool) :
 	calendarsConf, credentialPath = getCalendarsConf(gladir)
 	today = date.today()
-	minDateOnFullDump = (1/Jan/(today.year - 5))[0:00]
-	maxDate = (1/Jan/(today.year + 5))[0:00]
+	minDateOnFullDump = (1/Jan/(today.year - 2))[0:00]
+	maxDate = (1/Jan/(today.year + 2))[0:00]
 	for calendarConf in calendarsConf:
 		addedEvents = 0
+		pedago = calendarConf['pedago']
 		calendarAPI = getCalendarAPI(gladir, credentialPath, calendarConf)
 		intra = Intra(calendarConf['autologin'])
-		newEvents = intra.getAllEvents(minDateOnFullDump if fullDump else date.today())
+		print("Loading Intra's Events...")
+		if pedago:
+			newEvents = intra.getAllEvents(minDateOnFullDump if fullDump else date.today())
+		else:
+			newEvents = intra.getRegisteredEvents(minDateOnFullDump if fullDump else date.today())
+		print("Fetching Google's Events...")
 		oldEvents = [oldEvent for oldEvent in calendarAPI.get_events(time_min=minDateOnFullDump if fullDump else date.today(), time_max=maxDate)]
+		print("Looking for events to add")
 		for event in newEvents:
 			if event.title == None:
 				continue
-			if not event.isAssignedTo(intra) and not event.isRegisteredTo():
-				continue
 			if eventIsKnown(oldEvents, event):
+				continue
+			registered = not pedago and event.isRegisteredTo()
+			assigned = pedago and event.isAssignedTo(intra)
+			if not assigned and not registered:
 				continue
 			print(f"Adding {event.title} to calendar")
 			addedEvents += 1
-			calendarAPI.add_event(GoogleEvent(event.title, start=event.start, end=event.end, description=f"{event.eventCode}\n{event.getUrl()}", location=event.room))
+			calendarAPI.add_event(GoogleEvent(event.title, start=event.start, end=event.end, description=event.formatDescription(), location=event.room))
 		if addedEvents > 0:
 			print(f"Added {addedEvents} events to calendar")
 		else:
