@@ -69,3 +69,7 @@ gladitek --gladir $GLADIR --clear
 ```
 
 **Warning** This will erase all events in the calendars. It might take some time
+
+## Contributions
+
+Issues and pull requests are welcome :smile:
