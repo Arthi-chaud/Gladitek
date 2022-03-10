@@ -29,6 +29,7 @@ class Event:
 		self.__setDate()
 		self.title = self.__access(self.__raw, 'acti_title')
 		self.room = None
+		self.eventCode = self.__access(self.__raw, 'codeevent')
 		if 'room' in self.__raw:
 			if self.__raw["room"] != None:
 				self.room = self.__access(self.__raw['room'], 'code')
