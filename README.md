@@ -14,7 +14,7 @@ Clone this repository, and at its path to your `PATH` environment variable
 Install the Google Calendar API Module:
 
 ```bash
-pip install gcsa dateutil
+pip install gcsa python-dateutil
 ```
 
 ## Setup Gladitek
