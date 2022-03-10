@@ -33,7 +33,7 @@ class Intra:
 			print(f"Fetching Intra's events since {start}")
 			events.extend(self.call('/planning/load', queryParams= {'start': start}).json())
 			return events
-		if date == today:
+		else:
 			return self.call('/planning/load', queryParams= {'start': since.strftime(dateFormat)}).json()
 	
 	def getAllEvents(self, since=date.today()):
@@ -64,7 +64,7 @@ class Event:
 	
 	def formatDescription(self):
 		description = f"{self.description}\n" if self.description != None else ""
-		return f"{description}{Intra.URL}{self.getUrl()}\nEvent code: {self.eventCode}\n"
+		return f"{description}{Intra.URL}{self.getUrl()}\n\nEvent code: {self.eventCode}\n"
 	
 	def getUrl(self) -> str:
 		year = self.__access(self.__raw, 'scolaryear')
